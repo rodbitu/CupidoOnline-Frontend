@@ -13,10 +13,6 @@ export default function Home() {
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
 
-  function loadMessages() {
-    return API.get("messages", "/messages");
-  }
-
   useEffect(() => {
     async function onLoad() {
       if (!isAuthenticated) {
@@ -35,8 +31,11 @@ export default function Home() {
   
     onLoad();
   }, [isAuthenticated]);
-  
-  
+
+  function loadMessages() {
+    return API.get("messages", "/messages");
+  }
+
 
   function renderMessagesList(messages) {
     return (
