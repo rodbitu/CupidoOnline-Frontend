@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
-import LoaderButton from "../components/LoaderButton/LoaderButton";
-import { useAppContext } from "../libs/contextLib";
-import { useFormFields } from "../libs/hooksLib";
-import { onError } from "../libs/errorLib";
+import LoaderButton from "../../components/LoaderButton/LoaderButton";
+import { useAppContext } from "../../libs/contextLib";
+import { useFormFields } from "../../libs/hooksLib";
+import { onError } from "../../libs/errorLib";
 import "./Register.css";
 import { Auth } from "aws-amplify";
 
@@ -107,7 +107,7 @@ export default function Register() {
           />
         </Form.Group>
         <Form.Group controlId="password" size="lg">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Senha</Form.Label>
           <Form.Control
             type="password"
             value={fields.password}
@@ -115,7 +115,7 @@ export default function Register() {
           />
         </Form.Group>
         <Form.Group controlId="confirmPassword" size="lg">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>Confirmar Senha</Form.Label>
           <Form.Control
             type="password"
             onChange={handleFieldChange}
@@ -126,11 +126,10 @@ export default function Register() {
           block
           size="lg"
           type="submit"
-          variant="success"
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Signup
+          Registrar
         </LoaderButton>
       </Form>
     );

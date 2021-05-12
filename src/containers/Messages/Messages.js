@@ -1,12 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { API, Storage } from "aws-amplify";
-import { onError } from "../libs/errorLib";
+import { onError } from "../../libs/errorLib";
 import Form from "react-bootstrap/Form";
-import LoaderButton from "../components/LoaderButton/LoaderButton";
-import config from "../config";
+import LoaderButton from "../../components/LoaderButton/LoaderButton";
+import config from "../../config";
 import "./Messages.css";
-import { s3Upload } from "../libs/awsLib";
+import { s3Upload } from "../../libs/awsLib";
 
 export default function Messages() {
   const file = useRef(null);

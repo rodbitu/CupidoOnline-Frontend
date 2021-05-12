@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./containers/Home";
-import NotFound from "./containers/NotFound";
-import Login from "./containers/Login";
-import Register from "./containers/Register";
-import NewMessage from "./containers/NewMessage";
-import Messages from "./containers/Messages";
+import Home from "./containers/Home/Home";
+import NotFound from "./containers/NotFound/NotFound";
+import Login from "./containers/Login/Login";
+import Register from "./containers/Register/Register";
+import NewMessage from "./containers/NewMessage/NewMessage";
+import Messages from "./containers/Messages/Messages";
 import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute/UnauthenticatedRoute";
 
