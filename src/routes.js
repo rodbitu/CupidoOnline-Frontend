@@ -1,21 +1,35 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from "./pages/Login/Login";
-import Registro from "./pages/Registro/Registro";
-import Home from "./pages/Home/Main";
-import NotFound from "./pages/NotFound/NotFound";
+import { Route, Switch } from "react-router-dom";
+import Home from "./containers/Home";
+import NotFound from "./containers/NotFound";
+import Login from "./containers/Login";
+import Register from "./containers/Register";
+import NewMessage from "./containers/NewMessage";
+import Messages from "./containers/Messages";
+import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute/UnauthenticatedRoute";
 
-export default (props) => {
+export default function Routes() {
   return (
-    <>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={Login}></Route>
-          <Route path="/registro" component={Registro}></Route>
-          <Route path="/home" component={Home}></Route>
-          <Route component={NotFound}></Route>
-        </Switch>
-      </BrowserRouter>
-    </>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <UnauthenticatedRoute exact path="/login">
+        <Login />
+      </UnauthenticatedRoute>
+      <UnauthenticatedRoute exact path="/register">
+        <Register />
+      </UnauthenticatedRoute>
+      <AuthenticatedRoute exact path="/messages/new">
+        <NewMessage />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute exact path="/messages/:id">
+        <Messages />
+      </AuthenticatedRoute>
+      <Route>
+        <NotFound />
+      </Route>
+    </Switch>
   );
-};
+}
