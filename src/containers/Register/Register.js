@@ -96,6 +96,7 @@ export default function Register() {
 
   function renderForm() {
     return (
+      <div className="containerNM">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="lg">
           <Form.Label>Email</Form.Label>
@@ -132,6 +133,7 @@ export default function Register() {
           Registrar
         </LoaderButton>
       </Form>
+      </div>
     );
   }
 

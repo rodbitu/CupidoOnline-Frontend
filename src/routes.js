@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import NotFound from "./containers/NotFound/NotFound";
 import Login from "./containers/Login/Login";
+import ResetPassword from "./containers/ResetPassword/ResetPassword";
+import Settings from "./containers/Settings/Settings";
+import ChangePassword from "./containers/ChangePassword/ChangePassword";
 import Register from "./containers/Register/Register";
 import NewMessage from "./containers/NewMessage/NewMessage";
 import Messages from "./containers/Messages/Messages";
@@ -18,6 +21,15 @@ export default function Routes() {
       <UnauthenticatedRoute exact path="/login">
         <Login />
       </UnauthenticatedRoute>
+      <UnauthenticatedRoute exact path="/login/reset">
+        <ResetPassword />
+      </UnauthenticatedRoute>
+      <Route exact path="/settings">
+        <Settings />
+      </Route>
+      <AuthenticatedRoute exact path="/settings/password">
+        <ChangePassword />
+      </AuthenticatedRoute>
       <UnauthenticatedRoute exact path="/register">
         <Register />
       </UnauthenticatedRoute>

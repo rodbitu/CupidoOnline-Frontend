@@ -4,13 +4,14 @@ import { useHistory } from "react-router-dom";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 import { onError } from "../../libs/errorLib";
 import config from "../../config";
-import "./NewMessage.css";
 import { API } from "aws-amplify";
-import { s3Upload } from "../../libs/awsLib";
+import "./NewMessage.css";
 
 export default function NewMessage() {
   const file = useRef(null);
   const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,54 +24,70 @@ export default function NewMessage() {
   
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
-        `Please pick a file smaller than ${
-          config.MAX_ATTACHMENT_SIZE / 1000000
-        } MB.`
+        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
+          1000000} MB.`
       );
       return;
     }
   
     setIsLoading(true);
-  
+    console.log(email, name, content)
     try {
-      const attachment = file.current ? await s3Upload(file.current) : null;
-  
-      await createMessage({ content, attachment });
+      await createMessage({ content });
+      alert("Mensagem enviada!");
       history.push("/");
     } catch (e) {
       onError(e);
+      alert("Mensagem não enviada!");
       setIsLoading(false);
     }
   }
   
-  
-  function createMessage(message) {
+  function createMessage() {
     return API.post("messages", "/messages", {
-      body: message
+      body: {
+        name,
+        email,
+        content
+      }
     });
   }
+  
 
   return (
-    <div className="NewMessage">
+    <div className="containerNM">
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="content">
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            value={content}
-            as="textarea"
-            onChange={(e) => setContent(e.target.value)}
+            as="input"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email de crush.."
           />
         </Form.Group>
-        <LoaderButton
-          block
-          type="submit"
-          size="lg"
-          variant="primary"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        >
-          Create
+        <Form.Group controlId="name">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control
+            as="input"
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nome de seu crush.."
+          />
+        </Form.Group>
+        <Form.Group controlId="content">
+        <label htmlFor="mensagem">Mensagem</label>
+        <textarea
+          as="textarea"
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Mensagem romântica para seu crush.."
+        ></textarea>
+        </Form.Group>
+        <LoaderButton block size="lg" type="submit" isLoading={isLoading}
+          disabled={!validateForm()}>
+          Enviar
         </LoaderButton>
       </Form>
     </div>
   );
 }
+
+

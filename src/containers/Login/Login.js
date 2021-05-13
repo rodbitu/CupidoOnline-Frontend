@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
 import { useFormFields } from "../../libs/hooksLib";
 import { onError } from "../../libs/errorLib";
@@ -34,6 +35,7 @@ export default function Login() {
   }
 
   return (
+    <div className="containerNM">
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="email">
@@ -62,7 +64,9 @@ export default function Login() {
         >
           Login
         </LoaderButton>
+        <Link to="/login/reset">Esqueceu sua senha?</Link>
       </Form>
+    </div>
     </div>
   );
 }
