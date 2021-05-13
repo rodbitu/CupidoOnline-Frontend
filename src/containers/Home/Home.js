@@ -52,6 +52,8 @@ export default function Home() {
         <img src={Icon}></img>
         <h1>Cupido Online</h1>
         <p className="text-muted">O Cupido Online é um site para você ter uma conexão com seu par ideal!</p>
+        <p className="text-muted">Mostre seu carinho por alguém enviando um email a essa pessoa..</p>
+
       </div>
     );
   }
