@@ -108,7 +108,7 @@ export default function Register() {
           />
         </Form.Group>
         <Form.Group controlId="password" size="lg">
-          <Form.Label>Senha</Form.Label>
+          <Form.Label>Senha(Min. 8 caracteres/Caracter Especial/Caracter maiusculo e minusculo)</Form.Label>
           <Form.Control
             type="password"
             value={fields.password}

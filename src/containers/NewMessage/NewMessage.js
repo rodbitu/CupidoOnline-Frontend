@@ -44,7 +44,7 @@ export default function NewMessage() {
   }
   
   function createMessage() {
-    return API.post("messages", "/messages", {
+    return API.post("messages", "/email", {
       body: {
         name,
         email,

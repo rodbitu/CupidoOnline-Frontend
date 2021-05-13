@@ -7,7 +7,7 @@ import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Icon from './img/cupido.png'
-import NewMessage from "../NewMessage/NewMessage";
+
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -41,7 +41,25 @@ export default function Home() {
   function renderMessagesList(messages) {
     return (
       <>
-        <NewMessage />
+        <LinkContainer to="/messages/new">
+          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
+            <BsPencilSquare size={17} />
+            <span className="ml-2 font-weight-bold">Crie uma nova mensagem</span>
+          </ListGroup.Item>
+        </LinkContainer>
+        {messages.map(({ messageId, content, createdAt }) => (
+          <LinkContainer key={messageId} to={`/notes/${messageId}`}>
+            <ListGroup.Item action>
+              <span className="font-weight-bold">
+                {content.trim().split("\n")[0]}
+              </span>
+              <br />
+              <span className="text-muted">
+                Created: {new Date(createdAt).toLocaleString()}
+              </span>
+            </ListGroup.Item>
+          </LinkContainer>
+        ))}
       </>
     );
   }
