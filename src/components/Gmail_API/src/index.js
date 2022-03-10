@@ -28,12 +28,12 @@ async function run() {
     const mailSent = await transporter.sendMail({
         text: 'Texto do E-mail',
         subject: 'Assunto do e-mail',
-        from: 'Ismael BIG CHACKA<ismaelamaranete5@hotmail.com>', // De quem veio a mensagem; Pode botar outra coisa diferente do email cadastrado
-        to: ["gio2014freitas@gmail.com", "ismaelamarante5@gmail.com"], // Pra quem quer enviar; Da pra enviar pra mais de uma pessoa
+        from: 'test TESTE<test@gmail.com>', // De quem veio a mensagem; Pode botar outra coisa diferente do email cadastrado
+        to: ["test@gmail.com"], // Pra quem quer enviar; Da pra enviar pra mais de uma pessoa
         html: `
         <html>
         <body>
-          <strong>BIG CHACKA na área</strong></br>hehehehhe
+          <strong>Mensagem de amor</strong></br>hehehehhe
         </body>
       </html> 
         `,
